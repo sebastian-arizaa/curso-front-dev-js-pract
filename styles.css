@@ -271,16 +271,23 @@ aside {
 
 /* product detail */
 
+#product-detail {
+    z-index: -2;
+}
 .product-detail-close {
     background: var(--white);
-    width: 14px;
-    height: 14px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 12px;
     left: 12px;
     z-index: 2;
-    padding: 12px;
+    padding: 7px;
     border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+.product-detail-close:hover {
+    transform: scale(1.1);
 }
 .product-detail-close:hover {
     cursor: pointer;
@@ -332,7 +339,7 @@ aside {
 /* Produc list */
 .main-container {
     position: relative;
-    z-index: -2;
+    z-index: -3;
 }
 .cards-container {
     display: grid;
@@ -349,6 +356,11 @@ aside {
     height: 240px;
     border-radius: 20px;
     object-fit: cover;
+    transition: transform 0.2s linear;
+    cursor: pointer;
+}
+.product-card img:hover {
+   transform: scale(1.05);
 }
 .cards-container .product-info {
     display: flex;

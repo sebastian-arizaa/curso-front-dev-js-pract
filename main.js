@@ -4,25 +4,40 @@ const burgerIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart-icon');
 const shoppingCarContainer = document.querySelector('#shopping-cart-container');
-const cardsContainer = document.querySelector('.cards-container')
+const cardsContainer = document.querySelector('.cards-container');
+const productDetail = document.querySelector('#product-detail');
+const productDetailClose = document.querySelector('.product-detail-close');
 
 menuEmail.addEventListener('click', toggleClass);
 burgerIcon.addEventListener('click', toggleClass);
 menuCarritoIcon.addEventListener('click', toggleClass);
+productDetailClose.addEventListener('click', closeProductDetail);
 
 function toggleClass(event){
     if (event.target === menuEmail){
         desktopMenu.classList.toggle('inactiveY');
         shoppingCarContainer.classList.add('inactiveY');
+        productDetail.classList.add('inactiveY');
     }else if (event.target === burgerIcon){
         mobileMenu.classList.toggle('inactiveX');
         shoppingCarContainer.classList.add('inactiveY');
+        productDetail.classList.add('inactiveY');
     }else if (event.target === menuCarritoIcon){
         shoppingCarContainer.classList.toggle('inactiveY');
         mobileMenu.classList.add('inactiveX');
         desktopMenu.classList.add('inactiveY');
-        console.log(event)
+        productDetail.classList.add('inactiveY');
     }
+}
+
+function openProductDetail(){
+    productDetail.classList.remove('inactiveY');
+    shoppingCarContainer.classList.add('inactiveY');
+    desktopMenu.classList.add('inactiveY');
+}
+
+function closeProductDetail(){
+    productDetail.classList.add('inactiveY');
 }
 
 const productList = [];
@@ -39,6 +54,43 @@ productList.push({
     name: 'Phone',
     price: 1250,
     image: 'https://images.pexels.com/photos/3999536/pexels-photo-3999536.jpeg?auto=compress&cs=tinysrgb&w=1600'
+},{
+    name: 'Pc',
+    price: 1700,
+    image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+},{
+    name: 'Phone',
+    price: 1250,
+    image: 'https://images.pexels.com/photos/3999536/pexels-photo-3999536.jpeg?auto=compress&cs=tinysrgb&w=1600'
+},{
+    name: 'Bike',
+    price: 458,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+},
+{
+    name: 'Phone',
+    price: 1250,
+    image: 'https://images.pexels.com/photos/3999536/pexels-photo-3999536.jpeg?auto=compress&cs=tinysrgb&w=1600'
+},{
+    name: 'Super Bike',
+    price: 1250,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+},{
+    name: 'Phone',
+    price: 1250,
+    image: 'https://images.pexels.com/photos/3999536/pexels-photo-3999536.jpeg?auto=compress&cs=tinysrgb&w=1600'
+},{
+    name: 'Motor Bike',
+    price: 1250,
+    image: 'https://images.pexels.com/photos/3999536/pexels-photo-3999536.jpeg?auto=compress&cs=tinysrgb&w=1600'
+},{
+    name: 'Phone',
+    price: 1250,
+    image: 'https://images.pexels.com/photos/3999536/pexels-photo-3999536.jpeg?auto=compress&cs=tinysrgb&w=1600'
+},{
+    name: 'Pc',
+    price: 1700,
+    image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 })
 
 function renderProducts(array){
@@ -48,6 +100,7 @@ function renderProducts(array){
 
         const productImage = document.createElement('img');
         productImage.setAttribute('src', product.image);
+        productImage.addEventListener('click', openProductDetail);
 
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
@@ -71,12 +124,14 @@ function renderProducts(array){
         productInfoDiv.append(productPrice,productName);
         productFigure.append(productFigureImg);
 
-        console.time(renderProducts)
     }
 }
 
 renderProducts(productList);
 
+
+
+// otra forma de hacer lo de arriba pero este tiene un hueco de seguridad
 
 /* function renderProducts(array){
     for (product of array){
